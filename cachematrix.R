@@ -1,9 +1,17 @@
-## makeCacheMatrix is a function that defines a list of functions
-## to calculate and cache the inverse of a matrix passed to it
-makeCacheMatrix <- function(x = matrix()) {
-	## We first define the variable to store the inverse
-	## and the functions that handle it
+## An example of using the following two functions in the R console
+##
+## > source("cachematrix.R")
+## > xvar <- makeCacheMatrix(matrix(c(10,20,30,40),ncol=2))
+## > cacheSolve(xvar)
+##
+## The first line loads this file. The second line sets up a 2x2 matrix,
+## with elements 10,20,30 and 40 and stores it in xvar. The third line
+## calls cacheSolve to calculate the inverse and cache it.
 
+
+## makeCacheMatrix is a function that defines a list of functions
+## to cache a matrix and its inverse
+makeCacheMatrix <- function(x = matrix()) {
 	## First we initialize the variable inv to store the inverse
     inv <- NULL
 
@@ -29,8 +37,9 @@ makeCacheMatrix <- function(x = matrix()) {
         getInverse = getInverse)
 }
 
-## cacheSolve is function to return the inverse of a matrix
-## and to cache the inverse for use until a new matrix is passed.
+## cacheSolve is function to calculate and return
+## the inverse of a matrix. It will also cache the
+## inverse using the functions defined with makeCacheMatrix.
 cacheSolve <- function(x) {
 	## Get the inverse from cache
 	inv <- x$getInverse()
